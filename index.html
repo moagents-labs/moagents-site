@@ -5,9 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rajhasekarun G.D | Mind Of Agents</title>
 <meta name="description" content="AI agents and agentic tooling, built and run on my own cluster. Coding agents, tool registries, MCP servers and the platform under them.">
+<script>try{var th=localStorage.getItem("theme");if(th)document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
 <style>
 :root{--bg:#0b1220;--card:#121b2e;--line:#22304d;--text:#e8edf7;--muted:#8fa0bf;--gold:#d4a843;--green:#34c38f}
-@media (prefers-color-scheme:light){:root{--bg:#f6f7fb;--card:#fff;--line:#dde2ee;--text:#14203a;--muted:#5b6b8a;--gold:#a67c1a;--green:#1f9d6e}}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#e3e6ec;--card:#f1f3f7;--line:#ccd2de;--text:#0a0d14;--muted:#1f3a6e;--gold:#a67c1a;--green:#1f9d6e}}
+:root[data-theme="light"]{--bg:#e3e6ec;--card:#f1f3f7;--line:#ccd2de;--text:#0a0d14;--muted:#1f3a6e;--gold:#a67c1a;--green:#1f9d6e}
+:root[data-theme="dark"]{color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
 main{max-width:980px;margin:0 auto;padding:64px 20px 48px}
@@ -45,6 +49,8 @@ a.card:hover{transform:translateY(-2px);border-color:var(--gold)}
 .tag.live{color:var(--green);border-color:var(--green)}
 .tag.wip{color:var(--gold);border-color:var(--gold)}
 
+.theme{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px;display:inline-flex;border-radius:8px}
+.theme:hover{color:var(--text)}
 #nav{display:flex;align-items:center;gap:18px}
 .navlink{display:inline-flex;color:var(--muted);text-decoration:none;font-size:.9rem}
 .navlink:hover{color:var(--text)}
@@ -190,6 +196,31 @@ $("name").textContent = SITE.name;
 $("aka").textContent = SITE.aka || "";
 $("role").textContent = SITE.role;
 $("tagline").textContent = SITE.tagline;
+const root_ = document.documentElement;
+const sysLight = () => window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches;
+const curTheme = () => root_.getAttribute("data-theme") || (sysLight() ? "light" : "dark");
+const NS_ = "http://www.w3.org/2000/svg";
+const themeBtn = el("button", "theme"); themeBtn.type = "button";
+const themeSvg = document.createElementNS(NS_, "svg");
+for (const [k, v] of Object.entries({ viewBox: "0 0 24 24", width: "20", height: "20", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", "aria-hidden": "true" })) themeSvg.setAttribute(k, v);
+themeBtn.appendChild(themeSvg);
+const SUN = [["circle", { cx: 12, cy: 12, r: 5 }], ["path", { d: "M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" }]];
+const MOON = [["path", { d: "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" }]];
+function paintTheme() {
+  const t = curTheme();
+  themeSvg.replaceChildren();
+  for (const [tag, attrs] of (t === "dark" ? SUN : MOON)) { const n = document.createElementNS(NS_, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); themeSvg.appendChild(n); }
+  const label = t === "dark" ? "Switch to light theme" : "Switch to dark theme";
+  themeBtn.setAttribute("aria-label", label); themeBtn.title = label;
+}
+themeBtn.addEventListener("click", () => {
+  const next = curTheme() === "dark" ? "light" : "dark";
+  root_.setAttribute("data-theme", next);
+  try { localStorage.setItem("theme", next); } catch (e) {}
+  paintTheme();
+});
+paintTheme();
+$("nav").appendChild(themeBtn);
 const ICONS = { linkedin: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" };
 for (const l of (SITE.links || [])) {
   const a = el("a", "navlink"); a.href = l.url; a.rel = "noopener"; a.setAttribute("aria-label", l.label); a.title = l.label;
