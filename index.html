@@ -7,28 +7,73 @@
 <meta name="description" content="AI agents and agentic tooling, built and run on my own cluster. Coding agents, tool registries, MCP servers and the platform under them.">
 <script>try{var th=localStorage.getItem("theme");if(th)document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
 <style>
-:root{--bg:#0b1220;--card:#121b2e;--line:#22304d;--text:#e8edf7;--muted:#8fa0bf;--gold:#d4a843;--green:#34c38f}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#e3e6ec;--card:#f1f3f7;--line:#ccd2de;--text:#0a0d14;--muted:#1f3a6e;--gold:#a67c1a;--green:#1f9d6e}}
-:root[data-theme="light"]{--bg:#e3e6ec;--card:#f1f3f7;--line:#ccd2de;--text:#0a0d14;--muted:#1f3a6e;--gold:#a67c1a;--green:#1f9d6e}
+:root{--bg:#0b1220;--card:#121b2e;--line:#22304d;--text:#e8edf7;--muted:#8fa0bf;--gold:#d4a843;--green:#34c38f;--blue:#6aa8ff}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#e3e6ec;--card:#f1f3f7;--line:#ccd2de;--text:#0a0d14;--muted:#1f3a6e;--gold:#a67c1a;--green:#1f9d6e;--blue:#1f5fbf}}
+:root[data-theme="light"]{--bg:#e3e6ec;--card:#f1f3f7;--line:#ccd2de;--text:#0a0d14;--muted:#1f3a6e;--gold:#a67c1a;--green:#1f9d6e;--blue:#1f5fbf;color-scheme:light}
 :root[data-theme="dark"]{color-scheme:dark}
-:root[data-theme="light"]{color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-main{max-width:980px;margin:0 auto;padding:64px 20px 48px}
-.top{display:flex;justify-content:space-between;align-items:center;margin:0 0 28px}
+main{max-width:1040px;margin:0 auto;padding:48px 20px 64px}
+.top{display:flex;justify-content:space-between;align-items:center;margin:0 0 40px}
 .brand{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
 .brand span{color:var(--gold)}
-h1{margin:0;font-size:2.4rem;line-height:1.15}
+#nav{display:flex;align-items:center;gap:18px}
+.navlink{display:inline-flex;color:var(--muted);text-decoration:none}
+.navlink:hover,.theme:hover{color:var(--text)}
+.theme{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px;display:inline-flex;border-radius:8px}
+
+/* intro strip */
+.intro{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.who{display:flex;align-items:center;gap:18px}
+.photo{width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex:none}
+.photo[hidden]{display:none}
+.who h1{margin:0;font-size:1.9rem;line-height:1.15}
 .aka{margin:2px 0 0;color:var(--muted);font-size:.9rem}
 .role{margin:6px 0 0;color:var(--gold);font-weight:600}
-.tagline{margin:16px 0 0;color:var(--muted);font-size:1.05rem}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none}
-.stats li{border:1px solid var(--line);border-radius:99px;padding:4px 14px;font-size:.85rem;color:var(--muted)}
-h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:48px 0 14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.box,a.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
-.box h3,a.card h3{margin:0 0 6px;font-size:1.05rem}
-.box p,a.card p{margin:0;color:var(--muted);font-size:.9rem}
+.pitch{flex:1 1 320px;max-width:520px;margin:0;color:var(--muted)}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none;width:100%}
+.stats li{border:1px solid var(--line);border-radius:99px;padding:3px 13px;font-size:.82rem;color:var(--muted)}
+
+h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 14px}
+section{margin-top:48px}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:16px}
+.head h2{margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font:inherit;font-size:.82rem;cursor:pointer;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 14px}
+.filters button:hover{border-color:var(--gold)}
+.filters button[aria-pressed="true"]{background:var(--gold);color:#0b1220;border-color:var(--gold);font-weight:600}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.idea{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;min-height:190px;padding:20px;background:var(--card);border:1px solid var(--line);border-radius:12px;cursor:pointer;transition:transform .15s,border-color .15s}
+.idea:hover,.idea:focus-visible{transform:translateY(-2px);border-color:var(--gold)}
+.idea h3{margin:0;font-size:1.1rem;line-height:1.3}
+.idea p{margin:0;color:var(--muted);font-size:.92rem;flex:1}
+.idea .foot{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.more{font-size:.78rem;color:var(--muted)}
+.tag{display:inline-block;font-size:.7rem;padding:2px 9px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.tag.exploring{color:var(--gold)}
+.tag.prototype{color:var(--blue)}
+.tag.ready{color:var(--green)}
+.empty{color:var(--muted);padding:20px 0}
+
+/* detail dialog */
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);padding:0;width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 48px)}
+dialog::backdrop{background:rgba(5,9,18,.6)}
+.dlg{padding:26px}
+.dlg .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.dlg h3{margin:0 0 8px;font-size:1.3rem}
+.dlg .x{background:none;border:0;color:var(--muted);font-size:1.5rem;line-height:1;cursor:pointer;padding:0 4px}
+.dlg .x:hover{color:var(--text)}
+.dlg h4{margin:20px 0 4px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.dlg p{margin:0}
+.btn{display:inline-block;margin-top:22px;padding:8px 18px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--gold);color:var(--text)}
+.btn:hover{opacity:.88}
+#nav .btn{margin:0;padding:6px 16px}
+
+/* about + expertise */
+.about p{margin:0 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.72rem;padding:2px 9px;border-radius:6px;background:rgba(143,160,191,.14);color:var(--muted)}
 .flip{perspective:1000px;height:250px;cursor:pointer;outline:none}
 .flip .inner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
 .flip.flipped .inner{transform:rotateY(180deg)}
@@ -39,48 +84,49 @@ h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mut
 .front .hint{position:absolute;bottom:14px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .back{transform:rotateY(180deg);justify-content:space-between;gap:10px}
 .back p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.5}
-.back .chips{margin-top:0}
-@media (prefers-reduced-motion:reduce){.flip .inner{transition:none}}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.chip{font-size:.72rem;padding:2px 9px;border-radius:6px;background:rgba(143,160,191,.12);color:var(--muted)}
-a.card{display:block;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
-a.card:hover{transform:translateY(-2px);border-color:var(--gold)}
-.tag{display:inline-block;margin-top:10px;font-size:.7rem;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
-.tag.live{color:var(--green);border-color:var(--green)}
-.tag.wip{color:var(--gold);border-color:var(--gold)}
-
-.theme{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px;display:inline-flex;border-radius:8px}
-.theme:hover{color:var(--text)}
-#nav{display:flex;align-items:center;gap:18px}
-.navlink{display:inline-flex;color:var(--muted);text-decoration:none;font-size:.9rem}
-.navlink:hover{color:var(--text)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0}
-.btn{display:inline-block;padding:8px 18px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--gold);color:var(--text)}
-.btn.primary{background:var(--gold);color:#0b1220}
-.btn:hover{opacity:.88}
-.about p{margin:0 0 12px;color:var(--text)}
-footer{margin-top:56px;color:var(--muted);font-size:.8rem}
-footer a{color:inherit}
+@media (prefers-reduced-motion:reduce){.flip .inner,.idea{transition:none}}
 </style>
 </head>
 <body>
 <main>
   <header class="top"><p class="brand" id="brand"></p><div id="nav"></div></header>
-  <h1 id="name"></h1>
-  <p class="aka" id="aka"></p>
-  <p class="role" id="role"></p>
-  <p class="tagline" id="tagline"></p>
-  <ul class="stats" id="stats"></ul>
 
-  <h2>About</h2>
-  <div class="about" id="about"></div>
+  <div class="intro">
+    <div class="who">
+      <img id="photo" class="photo" alt="" hidden>
+      <div>
+        <h1 id="name"></h1>
+        <p class="aka" id="aka"></p>
+        <p class="role" id="role"></p>
+      </div>
+    </div>
+    <p class="pitch" id="tagline"></p>
+    <ul class="stats" id="stats"></ul>
+  </div>
 
-  <h2>Expertise</h2>
-  <div class="grid" id="expertise"></div>
+  <section id="ideas-sec">
+    <div class="head"><h2>Ideas</h2><div class="filters" id="filters"></div></div>
+    <div class="grid" id="ideas"></div>
+  </section>
 
-  <div id="apps"></div>
+  <section>
+    <h2>About</h2>
+    <div class="about" id="about"></div>
+  </section>
 
+  <section>
+    <h2>Expertise</h2>
+    <div class="grid" id="expertise"></div>
+  </section>
 </main>
+
+<dialog id="detail" aria-labelledby="d-title">
+  <div class="dlg">
+    <div class="row"><div><h3 id="d-title"></h3><span class="tag" id="d-status"></span></div><button class="x" id="d-close" type="button" aria-label="Close">&times;</button></div>
+    <div id="d-body"></div>
+  </div>
+</dialog>
+
 <script>
 // EDIT THIS BLOCK to change the page content.
 const SITE = {
@@ -185,23 +231,28 @@ const SITE = {
     }
   ],
   "login": "https://dashboard.moagents.net",
-  "items": []
+  "photo": "assets/profile.jpg"
 };
 
 const $ = id => document.getElementById(id);
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+const NS = "http://www.w3.org/2000/svg";
 
+/* ---- header ---- */
 for (const [txt, gold] of SITE.brand) $("brand").appendChild(gold ? el("span", "", txt) : document.createTextNode(txt));
 $("name").textContent = SITE.name;
+if (SITE.photo) { const im = $("photo"); im.onload = () => { im.hidden = false; }; im.alt = SITE.name; im.src = SITE.photo; }
 $("aka").textContent = SITE.aka || "";
 $("role").textContent = SITE.role;
 $("tagline").textContent = SITE.tagline;
+for (const s of SITE.stats) $("stats").appendChild(el("li", "", s));
+
+/* ---- theme toggle ---- */
 const root_ = document.documentElement;
 const sysLight = () => window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches;
 const curTheme = () => root_.getAttribute("data-theme") || (sysLight() ? "light" : "dark");
-const NS_ = "http://www.w3.org/2000/svg";
 const themeBtn = el("button", "theme"); themeBtn.type = "button";
-const themeSvg = document.createElementNS(NS_, "svg");
+const themeSvg = document.createElementNS(NS, "svg");
 for (const [k, v] of Object.entries({ viewBox: "0 0 24 24", width: "20", height: "20", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", "aria-hidden": "true" })) themeSvg.setAttribute(k, v);
 themeBtn.appendChild(themeSvg);
 const SUN = [["circle", { cx: 12, cy: 12, r: 5 }], ["path", { d: "M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" }]];
@@ -209,7 +260,7 @@ const MOON = [["path", { d: "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" }]];
 function paintTheme() {
   const t = curTheme();
   themeSvg.replaceChildren();
-  for (const [tag, attrs] of (t === "dark" ? SUN : MOON)) { const n = document.createElementNS(NS_, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); themeSvg.appendChild(n); }
+  for (const [tag, attrs] of (t === "dark" ? SUN : MOON)) { const n = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); themeSvg.appendChild(n); }
   const label = t === "dark" ? "Switch to light theme" : "Switch to dark theme";
   themeBtn.setAttribute("aria-label", label); themeBtn.title = label;
 }
@@ -221,20 +272,65 @@ themeBtn.addEventListener("click", () => {
 });
 paintTheme();
 $("nav").appendChild(themeBtn);
+
 const ICONS = { linkedin: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" };
 for (const l of (SITE.links || [])) {
   const a = el("a", "navlink"); a.href = l.url; a.rel = "noopener"; a.setAttribute("aria-label", l.label); a.title = l.label;
-  if (ICONS[l.icon]) {
-    const NS = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 24 24"); svg.setAttribute("width", "22"); svg.setAttribute("height", "22"); svg.setAttribute("fill", "currentColor"); svg.setAttribute("aria-hidden", "true");
-    const p = document.createElementNS(NS, "path"); p.setAttribute("d", ICONS[l.icon]); svg.appendChild(p); a.appendChild(svg);
-  } else a.textContent = l.label;
+  const svg = document.createElementNS(NS, "svg");
+  for (const [k, v] of Object.entries({ viewBox: "0 0 24 24", width: "22", height: "22", fill: "currentColor", "aria-hidden": "true" })) svg.setAttribute(k, v);
+  const p = document.createElementNS(NS, "path"); p.setAttribute("d", ICONS[l.icon]); svg.appendChild(p); a.appendChild(svg);
   $("nav").appendChild(a);
 }
-if (SITE.login) { const a = el("a", "btn", "Login"); a.href = SITE.login; $("nav").appendChild(a); }
-for (const p of SITE.about) $("about").appendChild(el("p", "", p));
-for (const s of SITE.stats) $("stats").appendChild(el("li", "", s));
 
+if (SITE.login) { const a = el("a", "btn", "Login"); a.href = SITE.login; $("nav").appendChild(a); }
+
+/* ---- ideas board ---- */
+const IDEAS = window.IDEAS || SITE.ideas || [];
+const STATUS = { exploring: "Exploring", prototype: "Prototype", ready: "Ready to demo" };
+let active = "all";
+const dlg = $("detail");
+
+function renderFilters() {
+  const f = $("filters"); f.replaceChildren();
+  const used = ["all", ...Object.keys(STATUS).filter(k => IDEAS.some(i => i.status === k))];
+  for (const k of used) {
+    const b = el("button", "", k === "all" ? "All" : STATUS[k]); b.type = "button"; b.setAttribute("aria-pressed", String(k === active));
+    b.addEventListener("click", () => { active = k; renderFilters(); renderIdeas(); });
+    f.appendChild(b);
+  }
+}
+function renderIdeas() {
+  const g = $("ideas"); g.replaceChildren();
+  const list = IDEAS.filter(i => active === "all" || i.status === active);
+  if (!list.length) { g.appendChild(el("p", "empty", "Nothing here yet.")); return; }
+  for (const i of list) {
+    const c = el("button", "idea"); c.type = "button";
+    c.append(el("h3", "", i.title), el("p", "", i.pitch));
+    const foot = el("div", "foot"); foot.append(el("span", "tag " + i.status, STATUS[i.status]), el("span", "more", "View details →"));
+    c.appendChild(foot);
+    c.addEventListener("click", () => openIdea(i));
+    g.appendChild(c);
+  }
+}
+function openIdea(i) {
+  $("d-title").textContent = i.title;
+  const s = $("d-status"); s.className = "tag " + i.status; s.textContent = STATUS[i.status];
+  const body = $("d-body"); body.replaceChildren();
+  for (const [h, v] of [["The idea", i.pitch], ["Problem", i.problem], ["Approach", i.approach], ["Next", i.next]]) {
+    if (!v) continue; body.append(el("h4", "", h), el("p", "", v));
+  }
+  if (i.tags && i.tags.length) { const c = el("div", "chips"); c.style.marginTop = "18px"; for (const t of i.tags) c.appendChild(el("span", "chip", t)); body.appendChild(c); }
+  if (i.url) { const a = el("a", "btn", i.urlLabel || "Open demo"); a.href = i.url; a.rel = "noopener"; body.appendChild(a); }
+  dlg.showModal();
+}
+$("d-close").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+if (IDEAS.length) { renderFilters(); renderIdeas(); } else { $("ideas-sec").remove(); }
+
+/* ---- about ---- */
+for (const p of SITE.about) $("about").appendChild(el("p", "", p));
+
+/* ---- expertise flip cards (one open at a time) ---- */
 for (const x of SITE.expertise) {
   const f = el("div", "flip"); f.tabIndex = 0; f.setAttribute("role", "button"); f.setAttribute("aria-pressed", "false"); f.setAttribute("aria-label", x.title);
   const inner = el("div", "inner");
@@ -252,20 +348,6 @@ for (const x of SITE.expertise) {
   f.addEventListener("click", toggle);
   f.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
   $("expertise").appendChild(f);
-}
-
-const root = $("apps");
-for (const s of [...new Set((SITE.items || []).map(a => a.section))]) {
-  root.appendChild(el("h2", "", s));
-  const g = el("div", "grid");
-  for (const a of SITE.items.filter(x => x.section === s)) {
-    const c = el(a.url ? "a" : "div", a.url ? "card" : "box");
-    if (a.url) { c.href = a.url; c.rel = "noopener"; }
-    c.append(el("h3", "", a.name), el("p", "", a.desc));
-    if (a.label) c.appendChild(el("span", "tag " + (a.status || ""), a.label));
-    g.appendChild(c);
-  }
-  root.appendChild(g);
 }
 </script>
 </body>
