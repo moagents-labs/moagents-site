@@ -7,351 +7,154 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon.ico" sizes="any"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="description" content="I design and build AI-driven systems, from agent workflows to the platforms they run on.">
 <meta property="og:type" content="website"><meta property="og:title" content="Rajhasekarun G.D | Mind Of Agents"><meta property="og:description" content="I design and build AI-driven systems, from agent workflows to the platforms they run on."><meta property="og:url" content="https://moagents.net/"><meta property="og:image" content="https://moagents.net/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://moagents.net/assets/og.png">
-<script>try{var th=localStorage.getItem("theme");if(th)document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<script>
+(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}
+if(!t){t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}
+document.documentElement.setAttribute("data-theme",t)})();
+</script>
 <style>
-:root{--bg:#0b1220;--card:#121b2e;--line:#22304d;--text:#e8edf7;--muted:#8fa0bf;--gold:#d4a843;--green:#34c38f;--blue:#6aa8ff}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#e3e6ec;--card:#f1f3f7;--line:#ccd2de;--text:#0a0d14;--muted:#1f3a6e;--gold:#a67c1a;--green:#1f9d6e;--blue:#1f5fbf}}
-:root[data-theme="light"]{--bg:#e3e6ec;--card:#f1f3f7;--line:#ccd2de;--text:#0a0d14;--muted:#1f3a6e;--gold:#a67c1a;--green:#1f9d6e;--blue:#1f5fbf;color-scheme:light}
-:root[data-theme="dark"]{color-scheme:dark}
+:root{--bg:#030407;--card:#0a1020;--line:#1a2a55;--text:#eef2fb;--muted:#9fb0d8;--acc:#d4ff24;--accT:#d4ff24;--cobalt:#1558c9;color-scheme:dark}
+:root[data-theme="light"]{--bg:#e3e6ec;--card:#f1f3f7;--line:#c3cad8;--text:#0a0d14;--muted:#1f3a6e;--accT:#1b4fb3;color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-main{max-width:1040px;margin:0 auto;padding:48px 20px 64px}
-.top{display:flex;justify-content:space-between;align-items:center;margin:0 0 40px}
-.brand{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
-.brand span{color:var(--gold)}
-#nav{display:flex;align-items:center;gap:18px}
-.navlink{display:inline-flex;color:var(--muted);text-decoration:none}
-.navlink:hover,.theme:hover{color:var(--text)}
-.theme{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px;display:inline-flex;border-radius:8px}
-
-/* intro strip */
-.intro{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between;padding-bottom:28px;border-bottom:1px solid var(--line)}
-.who{display:flex;align-items:center;gap:18px}
-.photo{width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex:none}
-.photo[hidden]{display:none}
-.who h1{margin:0;font-size:1.9rem;line-height:1.15}
-.aka{margin:2px 0 0;color:var(--muted);font-size:.9rem}
-.role{margin:6px 0 0;color:var(--gold);font-weight:600}
-.pitch{flex:1 1 320px;max-width:520px;margin:0;color:var(--muted)}
-.stats{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none;width:100%}
-.stats li{border:1px solid var(--line);border-radius:99px;padding:3px 13px;font-size:.82rem;color:var(--muted)}
-
-h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 14px}
-section{margin-top:48px}
-.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:16px}
-.head h2{margin:0}
-.filters{display:flex;flex-wrap:wrap;gap:8px}
-.filters button{font:inherit;font-size:.82rem;cursor:pointer;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 14px}
-.filters button:hover{border-color:var(--gold)}
-.filters button[aria-pressed="true"]{background:var(--gold);color:#0b1220;border-color:var(--gold);font-weight:600}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.idea{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;min-height:190px;padding:20px;background:var(--card);border:1px solid var(--line);border-radius:12px;cursor:pointer;transition:transform .15s,border-color .15s}
-.idea:hover,.idea:focus-visible{transform:translateY(-2px);border-color:var(--gold)}
-.idea h3{margin:0;font-size:1.1rem;line-height:1.3}
-.idea p{margin:0;color:var(--muted);font-size:.92rem;flex:1}
-.idea .foot{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.more{font-size:.78rem;color:var(--muted)}
-.tag{display:inline-block;font-size:.7rem;padding:2px 9px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
-.tag.exploring{color:var(--gold)}
-.tag.prototype{color:var(--blue)}
-.tag.ready{color:var(--green)}
-.empty{color:var(--muted);padding:20px 0}
-
-/* detail dialog */
-dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);padding:0;width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 48px)}
-dialog::backdrop{background:rgba(5,9,18,.6)}
-.dlg{padding:26px}
-.dlg .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.dlg h3{margin:0 0 8px;font-size:1.3rem}
-.dlg .x{background:none;border:0;color:var(--muted);font-size:1.5rem;line-height:1;cursor:pointer;padding:0 4px}
-.dlg .x:hover{color:var(--text)}
-.dlg h4{margin:20px 0 4px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.dlg p{margin:0}
-.btn{display:inline-block;margin-top:22px;padding:8px 18px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--gold);color:var(--text)}
-.btn:hover{opacity:.88}
-#nav .btn{margin:0;padding:6px 16px}
-
-/* about + expertise */
-.about p{margin:0 0 12px}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font-size:.72rem;padding:2px 9px;border-radius:6px;background:rgba(143,160,191,.14);color:var(--muted)}
-.flip{perspective:1000px;height:270px;cursor:pointer;outline:none}
-.flip .inner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
-.flip.flipped .inner{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;overflow:hidden}
-.flip:hover .face,.flip:focus-visible .face{border-color:var(--gold)}
-.front{align-items:center;justify-content:center;text-align:center}
-.front h3{margin:0;font-size:1.15rem;line-height:1.3}
-.front .hint{position:absolute;bottom:14px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.back{transform:rotateY(180deg);justify-content:space-between;gap:10px}
-.back p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.5}
-@media (prefers-reduced-motion:reduce){.flip .inner,.idea{transition:none}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;padding:20px}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
+.hero{max-width:1320px;margin:0 auto;background:var(--cobalt);border-radius:36px;padding:32px 48px 64px;overflow:hidden;color:#fff}
+.bar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.brand{font-size:14px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.brand b{color:var(--acc);font-weight:600}
+.nav{display:flex;gap:12px;align-items:center}
+.circle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;cursor:pointer;padding:0}
+.li{display:flex;width:44px;height:44px}
+.pill{display:flex;align-items:center;border-radius:999px;font-weight:700}
+.pill.lime{background:var(--acc);color:#030407}
+.pill.ghost{border:1px solid rgba(255,255,255,.55);color:#fff;font-weight:500}
+.pill.dark{background:#030407;color:#fff;font-weight:600}
+.hero-grid{display:flex;flex-wrap:wrap;gap:40px;align-items:center;padding-top:72px}
+.hero-l{flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:32px}
+.chip{align-self:flex-start;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.55);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+h1{margin:0;font-size:clamp(46px,8vw,104px);line-height:.96;letter-spacing:-.02em}
+h1 em{color:var(--acc)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.cta .pill{height:56px;padding:0 32px;font-size:16px}
+.hero-r{flex:1 1 380px;min-width:0;display:flex;justify-content:center}
+.hero-r svg{width:100%;max-width:480px;height:auto}
+.stats{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;padding:56px 0}
+.stat{flex:1 1 160px;min-width:0;padding:8px 24px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.stat .big{font-size:40px;line-height:1;color:var(--accT)}
+.stat .lbl{font-size:14px;color:var(--muted)}
+.about{max-width:1120px;margin:0 auto;padding:72px 32px 96px;display:flex;flex-wrap:wrap;gap:56px;align-items:center}
+.photo{flex:0 1 320px;min-width:240px;padding:12px;border:1px solid var(--accT);border-radius:40px}
+.photo img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:28px}
+.about-r{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:40px}
+h2.q{margin:0;font-size:clamp(34px,5vw,52px);line-height:1.1;letter-spacing:-.01em}
+h2.q em{color:var(--accT)}
+.cols{display:flex;flex-wrap:wrap;gap:40px;font-size:19px;line-height:1.65}
+.cols p{flex:1 1 300px;margin:0}
+.cols p:last-child{color:var(--muted)}
+.exp{max-width:1120px;margin:0 auto;padding:96px 32px 72px;display:flex;flex-direction:column;gap:16px}
+.exp h2{margin:0 0 16px;font-size:clamp(42px,6vw,64px);line-height:1;letter-spacing:-.01em}
+.item{border:1px solid var(--line);border-radius:28px;background:var(--card);overflow:hidden}
+.item.open{border-color:var(--accT)}
+.item button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 36px;min-height:44px;background:transparent;border:0;cursor:pointer;color:var(--text);text-align:left}
+.item .l{display:flex;align-items:baseline;gap:24px}
+.item .n{font-size:44px;line-height:.9;color:var(--accT)}
+.item .t{font-size:clamp(26px,3.4vw,40px);line-height:1.05}
+.item .s{flex:0 0 44px;height:44px;border-radius:50%;border:1px solid var(--accT);color:var(--accT);display:flex;align-items:center;justify-content:center;font-size:26px;line-height:1}
+.item .body{display:none;margin:0;padding:0 36px 32px 108px;font-size:18px;line-height:1.6;color:var(--muted);max-width:760px}
+.item.open .body{display:block}
+.cta2{max-width:1320px;margin:0 auto;background:var(--cobalt);border-radius:36px;padding:72px 48px;display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;color:#fff}
+.cta2 h2{margin:0;flex:1 1 400px;font-size:clamp(46px,6vw,72px);line-height:1;letter-spacing:-.01em}
+.cta2 h2 em{color:var(--acc)}
+.cta2 .pill{height:64px;padding:0 40px;font-size:18px}
+footer{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:center;padding:40px 8px 24px;font-size:14px;color:var(--muted)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+@media (max-width:640px){body{padding:12px}.hero{padding:24px 24px 40px;border-radius:28px}.hero-grid{padding-top:40px}.item button{padding:22px 20px}.item .body{padding:0 20px 24px}.item .n{font-size:32px}.item .l{gap:14px}.cta2{padding:48px 24px;border-radius:28px}.about{padding:48px 20px 64px}.exp{padding:64px 20px 48px}.stat{flex:1 1 40%}.stat .big{font-size:28px;overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
-<main>
-  <header class="top"><p class="brand" id="brand"></p><div id="nav"></div></header>
+<section class="hero" id="top">
+<header class="bar">
+<a class="brand" href="#top"><b>M</b>ind <b>O</b>f <b>A</b>gents</a>
+<nav class="nav">
+<button type="button" class="circle" id="theme" aria-label="Switch theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path id="themeIcon" d=""/></svg></button>
+<a class="li" href="https://www.linkedin.com/in/rajhasekarun-g-d-2a1550a/" aria-label="LinkedIn profile"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="9" fill="#fff"/><g transform="translate(8 8) scale(1.1667)" fill="#0a66c2"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.78 2.66 4.78 6.1V21h-4v-4.98c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.92 1.3-1.92 2.63V21h-4V9.75z"/></g></svg></a>
+<a class="pill lime" style="height:44px;padding:0 26px;font-size:15px" href="https://dashboard.moagents.net">Login</a>
+</nav>
+</header>
+<div class="hero-grid">
+<div class="hero-l">
+<span class="chip">Sr. Architect &middot; Rajhasekarun G.D</span>
+<h1 class="serif">AI-driven systems, <em>from agent workflows</em> to the platforms they run on.</h1>
+<div class="cta"><a class="pill dark" href="https://dashboard.moagents.net">Login to the dashboard</a><a class="pill ghost" href="#about">About me</a></div>
+</div>
+<div class="hero-r">
+<svg viewBox="0 0 520 520" role="img" aria-label="Diagram of an agent at the centre surrounded by rings for RAG, process automation and platform">
+<circle cx="260" cy="260" r="236" fill="none" stroke="#fff" stroke-opacity=".28"/>
+<circle cx="260" cy="260" r="160" fill="none" stroke="#fff" stroke-opacity=".4"/>
+<circle cx="260" cy="260" r="88" fill="none" stroke="#d4ff24" stroke-opacity=".9"/>
+<circle cx="260" cy="260" r="40" fill="#d4ff24"/>
+<text x="260" y="266" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#030407">Agent</text>
+<circle cx="348" cy="260" r="9" fill="#fff"/><circle cx="146" cy="170" r="9" fill="#fff"/><circle cx="420" cy="170" r="9" fill="#d4ff24"/><circle cx="190" cy="408" r="9" fill="#d4ff24"/><circle cx="330" cy="30" r="9" fill="#fff"/><circle cx="64" cy="320" r="9" fill="#fff"/>
+<g font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#fff"><text x="362" y="248">Tools</text><text x="96" y="152">RAG</text><text x="352" y="150">Process</text><text x="104" y="432">Platform</text><text x="346" y="36">Validate</text><text x="80" y="346">Cluster</text></g>
+</svg>
+</div>
+</div>
+</section>
 
-  <div class="intro">
-    <div class="who">
-      <img id="photo" class="photo" alt="" hidden>
-      <div>
-        <h1 id="name"></h1>
-        <p class="aka" id="aka"></p>
-        <p class="role" id="role"></p>
-      </div>
-    </div>
-    <p class="pitch" id="tagline"></p>
-    <ul class="stats" id="stats"></ul>
-  </div>
+<section class="stats" aria-label="At a glance">
+<div class="stat"><span class="big serif">16+</span><span class="lbl">years of experience</span></div>
+<div class="stat"><span class="big serif">Agentic AI</span><span class="lbl">what I build now</span></div>
+<div class="stat"><span class="big serif">Architecture</span><span class="lbl">systems and platforms</span></div>
+<div class="stat"><span class="big serif">Automation</span><span class="lbl">business processes</span></div>
+<div class="stat"><span class="big serif">Infra</span><span class="lbl">run on my own cluster</span></div>
+</section>
 
-  <section id="ideas-sec">
-    <div class="head"><h2>Ideas</h2><div class="filters" id="filters"></div></div>
-    <div class="grid" id="ideas"></div>
-  </section>
+<section class="about" id="about">
+<div class="photo"><img src="assets/profile.jpg" alt="Portrait of Rajhasekarun G.D"></div>
+<div class="about-r">
+<h2 class="q serif">I look at how a process <em>really runs</em> before deciding how to improve it.</h2>
+<div class="cols">
+<p>That habit, plus an early interest in technology, has taken me through 16+ years: from business process automation into application development, then architecture and system design, and now AI-driven engineering.</p>
+<p>Today I build agentic systems, RAG-based solutions and AI agents that help build and verify applications, and I run my own platform to try ideas out before they go anywhere else.</p>
+</div>
+</div>
+</section>
 
-  <section>
-    <h2>About</h2>
-    <div class="about" id="about"></div>
-  </section>
+<section class="exp" id="expertise">
+<h2 class="serif">Expertise</h2>
+<div class="item open"><button type="button" aria-expanded="true"><span class="l"><span class="n serif">01</span><span class="t serif">AI and agentic systems</span></span><span class="s" aria-hidden="true">&minus;</span></button><p class="body">Agent workflows, RAG-based solutions and LangChain applications that help build and verify software.</p></div>
+<div class="item"><button type="button" aria-expanded="false"><span class="l"><span class="n serif">02</span><span class="t serif">Architecture and system design</span></span><span class="s" aria-hidden="true">+</span></button><p class="body">Designing the structure of systems so they stay practical and scalable as they grow.</p></div>
+<div class="item"><button type="button" aria-expanded="false"><span class="l"><span class="n serif">03</span><span class="t serif">Infrastructure and platform</span></span><span class="s" aria-hidden="true">+</span></button><p class="body">Kubernetes and the platforms underneath, run myself to try ideas out first.</p></div>
+<div class="item"><button type="button" aria-expanded="false"><span class="l"><span class="n serif">04</span><span class="t serif">Business process automation</span></span><span class="s" aria-hidden="true">+</span></button><p class="body">Automation frameworks that run end to end, on a schedule, around the clock.</p></div>
+<div class="item"><button type="button" aria-expanded="false"><span class="l"><span class="n serif">05</span><span class="t serif">Data and backend validation</span></span><span class="s" aria-hidden="true">+</span></button><p class="body">Database and backend checks that confirm the numbers behind a process are right.</p></div>
+</section>
 
-  <section>
-    <h2>Expertise</h2>
-    <div class="grid" id="expertise"></div>
-  </section>
-</main>
+<section class="cta2">
+<h2 class="serif">See it <em>running.</em></h2>
+<a class="pill lime" href="https://dashboard.moagents.net">Login to the dashboard</a>
+</section>
 
-<dialog id="detail" aria-labelledby="d-title">
-  <div class="dlg">
-    <div class="row"><div><h3 id="d-title"></h3><span class="tag" id="d-status"></span></div><button class="x" id="d-close" type="button" aria-label="Close">&times;</button></div>
-    <div id="d-body"></div>
-  </div>
-</dialog>
+<footer>
+<a href="https://www.linkedin.com/in/rajhasekarun-g-d-2a1550a/">LinkedIn</a>
+<a href="https://dashboard.moagents.net">Login</a>
+</footer>
 
 <script>
-// EDIT THIS BLOCK to change the page content.
-const SITE = {
-  "brand": [
-    [
-      "M",
-      1
-    ],
-    [
-      "ind ",
-      0
-    ],
-    [
-      "O",
-      1
-    ],
-    [
-      "f ",
-      0
-    ],
-    [
-      "Agents",
-      1
-    ]
-  ],
-  "name": "Rajhasekarun G.D",
-  "aka": "Raj for short",
-  "links": [
-    {
-      "label": "LinkedIn",
-      "icon": "linkedin",
-      "url": "https://www.linkedin.com/in/rajhasekarun-g-d-2a1550a/"
-    }
-  ],
-  "role": "Sr. Architect",
-  "tagline": "I design and build AI-driven systems, from agent workflows to the platforms they run on.",
-  "stats": [
-    "16+ years",
-    "Agentic AI",
-    "Architecture",
-    "Automation",
-    "Infrastructure"
-  ],
-  "about": [
-    "I look at how a process really runs before deciding how to improve it. That habit, plus an early interest in technology, has taken me through 16+ years: from business process automation into application development, then architecture and system design, and now AI-driven engineering.",
-    "Today I build agentic systems, RAG-based solutions and AI agents that help build and verify applications, and I run my own platform to try ideas out before they go anywhere else."
-  ],
-  "expertise": [
-    {
-      "title": "AI & agentic systems",
-      "desc": "Agentic AI, RAG and LLM integration, including an AI-driven lifecycle where LangChain agents develop and test applications.",
-      "tags": [
-        "Agentic AI",
-        "RAG",
-        "LangChain",
-        "LangGraph",
-        "MCP servers",
-        "AI-driven lifecycle"
-      ]
-    },
-    {
-      "title": "Architecture & system design",
-      "desc": "Designing services and platforms end to end, applying enterprise patterns with clean separation across the stack.",
-      "tags": [
-        "Microservices",
-        "API gateway & BFF",
-        "ESB / Apache Camel",
-        "OIDC / SSO",
-        "Java / Spring Boot",
-        "Python / FastAPI",
-        "React / TypeScript"
-      ]
-    },
-    {
-      "title": "Infrastructure & platform",
-      "desc": "Running production-style platforms on Kubernetes with CI/CD, ingress, identity and secure remote access.",
-      "tags": [
-        "Kubernetes (k3s)",
-        "GitHub Actions",
-        "Traefik",
-        "Cloudflare Tunnel",
-        "Keycloak / OIDC"
-      ]
-    },
-    {
-      "title": "Test automation & framework design",
-      "desc": "Designing scalable automation frameworks and test strategies, with sound estimation and delivery across large programs.",
-      "tags": [
-        "Framework design",
-        "Test strategy",
-        "Project estimation",
-        "UI & API automation"
-      ]
-    },
-    {
-      "title": "Database & backend testing",
-      "desc": "Validating data and services end to end, plus UI and backend maintenance for long-lived applications.",
-      "tags": [
-        "Database testing",
-        "Backend validation",
-        "Maintenance"
-      ]
-    }
-  ],
-  "login": "https://dashboard.moagents.net",
-  "photo": "assets/profile.jpg"
-};
-
-const $ = id => document.getElementById(id);
-const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
-const NS = "http://www.w3.org/2000/svg";
-
-/* ---- header ---- */
-for (const [txt, gold] of SITE.brand) $("brand").appendChild(gold ? el("span", "", txt) : document.createTextNode(txt));
-$("name").textContent = SITE.name;
-if (SITE.photo) { const im = $("photo"); im.onload = () => { im.hidden = false; }; im.alt = SITE.name; im.src = SITE.photo; }
-$("aka").textContent = SITE.aka || "";
-$("role").textContent = SITE.role;
-$("tagline").textContent = SITE.tagline;
-for (const s of SITE.stats) $("stats").appendChild(el("li", "", s));
-
-/* ---- theme toggle ---- */
-const root_ = document.documentElement;
-const sysLight = () => window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches;
-const curTheme = () => root_.getAttribute("data-theme") || (sysLight() ? "light" : "dark");
-const themeBtn = el("button", "theme"); themeBtn.type = "button";
-const themeSvg = document.createElementNS(NS, "svg");
-for (const [k, v] of Object.entries({ viewBox: "0 0 24 24", width: "20", height: "20", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", "aria-hidden": "true" })) themeSvg.setAttribute(k, v);
-themeBtn.appendChild(themeSvg);
-const SUN = [["circle", { cx: 12, cy: 12, r: 5 }], ["path", { d: "M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" }]];
-const MOON = [["path", { d: "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" }]];
-function paintTheme() {
-  const t = curTheme();
-  themeSvg.replaceChildren();
-  for (const [tag, attrs] of (t === "dark" ? SUN : MOON)) { const n = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); themeSvg.appendChild(n); }
-  const label = t === "dark" ? "Switch to light theme" : "Switch to dark theme";
-  themeBtn.setAttribute("aria-label", label); themeBtn.title = label;
-}
-themeBtn.addEventListener("click", () => {
-  const next = curTheme() === "dark" ? "light" : "dark";
-  root_.setAttribute("data-theme", next);
-  try { localStorage.setItem("theme", next); } catch (e) {}
-  paintTheme();
-});
-paintTheme();
-$("nav").appendChild(themeBtn);
-
-const ICONS = { linkedin: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" };
-for (const l of (SITE.links || [])) {
-  const a = el("a", "navlink"); a.href = l.url; a.rel = "noopener"; a.setAttribute("aria-label", l.label); a.title = l.label;
-  const svg = document.createElementNS(NS, "svg");
-  for (const [k, v] of Object.entries({ viewBox: "0 0 24 24", width: "22", height: "22", fill: "currentColor", "aria-hidden": "true" })) svg.setAttribute(k, v);
-  const p = document.createElementNS(NS, "path"); p.setAttribute("d", ICONS[l.icon]); svg.appendChild(p); a.appendChild(svg);
-  $("nav").appendChild(a);
-}
-
-if (SITE.login) { const a = el("a", "btn", "Login"); a.href = SITE.login; $("nav").appendChild(a); }
-
-/* ---- ideas board ---- */
-const IDEAS = window.IDEAS || SITE.ideas || [];
-const STATUS = { exploring: "Exploring", prototype: "Prototype", ready: "Ready to demo" };
-let active = "all";
-const dlg = $("detail");
-
-function renderFilters() {
-  const f = $("filters"); f.replaceChildren();
-  const used = ["all", ...Object.keys(STATUS).filter(k => IDEAS.some(i => i.status === k))];
-  for (const k of used) {
-    const b = el("button", "", k === "all" ? "All" : STATUS[k]); b.type = "button"; b.setAttribute("aria-pressed", String(k === active));
-    b.addEventListener("click", () => { active = k; renderFilters(); renderIdeas(); });
-    f.appendChild(b);
-  }
-}
-function renderIdeas() {
-  const g = $("ideas"); g.replaceChildren();
-  const list = IDEAS.filter(i => active === "all" || i.status === active);
-  if (!list.length) { g.appendChild(el("p", "empty", "Nothing here yet.")); return; }
-  for (const i of list) {
-    const c = el("button", "idea"); c.type = "button";
-    c.append(el("h3", "", i.title), el("p", "", i.pitch));
-    const foot = el("div", "foot"); foot.append(el("span", "tag " + i.status, STATUS[i.status]), el("span", "more", "View details →"));
-    c.appendChild(foot);
-    c.addEventListener("click", () => openIdea(i));
-    g.appendChild(c);
-  }
-}
-function openIdea(i) {
-  $("d-title").textContent = i.title;
-  const s = $("d-status"); s.className = "tag " + i.status; s.textContent = STATUS[i.status];
-  const body = $("d-body"); body.replaceChildren();
-  for (const [h, v] of [["The idea", i.pitch], ["Problem", i.problem], ["Approach", i.approach], ["Next", i.next]]) {
-    if (!v) continue; body.append(el("h4", "", h), el("p", "", v));
-  }
-  if (i.tags && i.tags.length) { const c = el("div", "chips"); c.style.marginTop = "18px"; for (const t of i.tags) c.appendChild(el("span", "chip", t)); body.appendChild(c); }
-  if (i.url) { const a = el("a", "btn", i.urlLabel || "Open demo"); a.href = i.url; a.rel = "noopener"; body.appendChild(a); }
-  dlg.showModal();
-}
-$("d-close").addEventListener("click", () => dlg.close());
-dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
-if (IDEAS.length) { renderFilters(); renderIdeas(); } else { $("ideas-sec").remove(); }
-
-/* ---- about ---- */
-for (const p of SITE.about) $("about").appendChild(el("p", "", p));
-
-/* ---- expertise flip cards (one open at a time) ---- */
-for (const x of SITE.expertise) {
-  const f = el("div", "flip"); f.tabIndex = 0; f.setAttribute("role", "button"); f.setAttribute("aria-pressed", "false"); f.setAttribute("aria-label", x.title);
-  const inner = el("div", "inner");
-  const front = el("div", "face front"); front.append(el("h3", "", x.title), el("span", "hint", "Tap to reveal"));
-  const back = el("div", "face back"); back.appendChild(el("p", "", x.desc));
-  const c = el("div", "chips");
-  for (const t of x.tags) c.appendChild(el("span", "chip", t));
-  back.appendChild(c);
-  inner.append(front, back); f.appendChild(inner);
-  const toggle = () => {
-    const open = !f.classList.contains("flipped");
-    for (const o of document.querySelectorAll(".flip.flipped")) { o.classList.remove("flipped"); o.setAttribute("aria-pressed", "false"); }
-    if (open) { f.classList.add("flipped"); f.setAttribute("aria-pressed", "true"); }
-  };
-  f.addEventListener("click", toggle);
-  f.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
-  $("expertise").appendChild(f);
-}
+(function(){
+var root=document.documentElement,btn=document.getElementById("theme"),ic=document.getElementById("themeIcon");
+var SUN="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z",MOON="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z";
+function paint(){var d=root.getAttribute("data-theme")==="dark";ic.setAttribute("d",d?SUN:MOON);btn.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme")}
+btn.addEventListener("click",function(){var n=root.getAttribute("data-theme")==="dark"?"light":"dark";root.setAttribute("data-theme",n);try{localStorage.setItem("theme",n)}catch(e){}paint()});
+paint();
+var items=[].slice.call(document.querySelectorAll(".item"));
+function set(it,open){it.classList.toggle("open",open);it.querySelector("button").setAttribute("aria-expanded",open?"true":"false");it.querySelector(".s").innerHTML=open?"&minus;":"+"}
+items.forEach(function(it){it.querySelector("button").addEventListener("click",function(){var was=it.classList.contains("open");items.forEach(function(o){set(o,false)});if(!was)set(it,true)})});
+})();
 </script>
 </body>
 </html>
