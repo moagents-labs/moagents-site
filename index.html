@@ -9,114 +9,186 @@
 <meta property="og:type" content="website"><meta property="og:title" content="Rajhasekarun G.D | Mind Of Agents"><meta property="og:description" content="I design and build AI-driven systems, from agent workflows to the platforms they run on."><meta property="og:url" content="https://moagents.net/"><meta property="og:image" content="https://moagents.net/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://moagents.net/assets/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
 <script>
 (function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}
 if(!t){t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}
-document.documentElement.setAttribute("data-theme",t)})();
+document.documentElement.setAttribute("data-theme",t);document.documentElement.className="js"})();
 </script>
 <style>
-:root{--bg:#030407;--card:#0a1020;--line:#1a2a55;--text:#eef2fb;--muted:#9fb0d8;--acc:#d4ff24;--accT:#d4ff24;--cobalt:#1558c9;color-scheme:dark}
-:root[data-theme="light"]{--bg:#e3e6ec;--card:#f1f3f7;--line:#c3cad8;--text:#0a0d14;--muted:#1f3a6e;--accT:#1b4fb3;color-scheme:light}
+:root{--bg:#081a28;--panel:#0e2a3f;--panelText:#e4f1f7;--card:#0e2231;--line:#1b3a52;--text:#e4f1f7;--muted:#7fb3c8;--gold:#ffd23f;--goldInk:#2b2000;--goldText:#ffd23f;--hl:#ffd23f;--nav:rgba(14,34,49,.78);color-scheme:dark}
+:root[data-theme="light"]{--bg:#eef6f8;--panel:#0b3c5d;--panelText:#eef6f8;--card:#ffffff;--line:#cfe0e8;--text:#0b3c5d;--muted:#46657b;--gold:#e0a100;--goldInk:#2a1d00;--goldText:#8a5f00;--hl:#ffd23f;--nav:rgba(255,255,255,.8);color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;padding:20px}
-a{text-decoration:none;color:inherit}
-button{font-family:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.5;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit}
 .serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
-.hero{max-width:1320px;margin:0 auto;background:var(--cobalt);border-radius:36px;padding:32px 48px 64px;overflow:hidden;color:#fff}
-.bar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
-.brand{font-size:14px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
-.brand b{color:var(--acc);font-weight:600}
-.nav{display:flex;gap:12px;align-items:center}
-.circle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;cursor:pointer;padding:0}
-.li{display:flex;width:44px;height:44px}
-.pill{display:flex;align-items:center;border-radius:999px;font-weight:700}
-.pill.lime{background:var(--acc);color:#030407}
-.pill.ghost{border:1px solid rgba(255,255,255,.55);color:#fff;font-weight:500}
-.pill.dark{background:#030407;color:#fff;font-weight:600}
-.hero-grid{display:flex;flex-wrap:wrap;gap:40px;align-items:center;padding-top:72px}
-.hero-l{flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:32px}
-.chip{align-self:flex-start;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.55);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-h1{margin:0;font-size:clamp(46px,8vw,104px);line-height:.96;letter-spacing:-.02em}
-h1 em{color:var(--acc)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--gold);color:var(--goldInk);padding:8px 14px;border-radius:8px;z-index:30}
+.skip:focus{left:8px}
+
+/* nav */
+.navwrap{position:sticky;top:12px;z-index:20;padding:12px 20px 0;max-width:1180px;margin:0 auto}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--nav);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;padding:10px 12px 10px 24px;transition:padding .25s,box-shadow .25s}
+.nav.small{padding:6px 8px 6px 20px;box-shadow:0 8px 28px rgba(0,0,0,.18)}
+.brand{font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.brand b{color:var(--goldText);font-weight:600}
+.links{display:flex;gap:6px}
+.links a{padding:8px 14px;border-radius:999px;font-size:14px;color:var(--muted);transition:background .2s,color .2s}
+.links a:hover{color:var(--text)}
+.links a.on{background:var(--line);color:var(--text)}
+.right{display:flex;align-items:center;gap:8px}
+.ic{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;padding:0;color:var(--text);transition:background .2s}
+.ic:hover{background:var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 24px;border-radius:999px;background:var(--gold);color:var(--goldInk);font-weight:600;font-size:15px;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(224,161,0,.35)}
+.btn.ghost{background:transparent;color:inherit;border:1px solid currentColor;font-weight:500}
+.btn.ghost:hover{box-shadow:none;background:rgba(255,255,255,.08)}
+.btn.sm{height:40px;padding:0 20px;font-size:14px}
+
+/* hero */
+.hero{margin:16px 0 0;background:var(--panel);color:var(--panelText);border-radius:36px;padding:56px 48px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;overflow:hidden;position:relative}
+.hero::before{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,210,63,.16),transparent 65%);pointer-events:none}
+.chip{display:inline-block;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.45);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+h1{margin:20px 0 28px;font-size:clamp(40px,6vw,76px);line-height:.98;letter-spacing:-.02em}
+h1 em{color:var(--hl);font-style:italic}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
-.cta .pill{height:56px;padding:0 32px;font-size:16px}
-.hero-r{flex:1 1 380px;min-width:0;display:flex;justify-content:center}
-.hero-r svg{width:100%;max-width:480px;height:auto}
-.stats{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;padding:56px 0}
-.stat{flex:1 1 160px;min-width:0;padding:8px 24px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
-.stat .big{font-size:40px;line-height:1;color:var(--accT)}
+.cta .btn{height:52px;padding:0 30px;font-size:16px}
+.detail{margin-top:32px;border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:18px 22px;background:rgba(255,255,255,.05);max-width:520px;min-height:112px}
+.detail .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--hl);font-weight:600}
+.detail .tt{font-size:26px;line-height:1.1;margin:6px 0 4px}
+.detail p{margin:0;font-size:15px;opacity:.85}
+.orbit{position:relative;width:100%;max-width:520px;aspect-ratio:1;justify-self:center}
+.orbit svg{position:absolute;inset:0;width:100%;height:100%}
+.ring1{transform-origin:50% 50%;animation:spin 90s linear infinite}
+.ring2{transform-origin:50% 50%;animation:spin 60s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22%;aspect-ratio:1;border-radius:50%;background:var(--hl);color:#2b2000;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:clamp(13px,1.6vw,17px);animation:pulse 3.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,210,63,.45)}50%{box-shadow:0 0 0 22px rgba(255,210,63,0)}}
+.node{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:var(--panel);color:var(--panelText);font-size:clamp(12px,1.4vw,14px);font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.node i{width:10px;height:10px;border-radius:50%;background:#e4f1f7;flex:none;transition:background .2s}
+.node:hover{transform:translate(-50%,-50%) scale(1.06)}
+.node[aria-pressed="true"]{background:var(--hl);color:#2b2000;border-color:var(--hl)}
+.node[aria-pressed="true"] i{background:#2b2000}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px 24px;display:flex;flex-direction:column;gap:6px;transition:transform .25s,border-color .25s}
+.stat:hover{transform:translateY(-4px);border-color:var(--gold)}
+.stat .big{font-size:clamp(24px,3.4vw,40px);line-height:1;color:var(--goldText);overflow-wrap:anywhere}
 .stat .lbl{font-size:14px;color:var(--muted)}
-.about{max-width:1120px;margin:0 auto;padding:72px 32px 96px;display:flex;flex-wrap:wrap;gap:56px;align-items:center}
-.photo{flex:0 1 320px;min-width:240px;padding:12px;border:1px solid var(--accT);border-radius:40px}
-.photo img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:28px}
-.about-r{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:40px}
-h2.q{margin:0;font-size:clamp(34px,5vw,52px);line-height:1.1;letter-spacing:-.01em}
-h2.q em{color:var(--accT)}
-.cols{display:flex;flex-wrap:wrap;gap:40px;font-size:19px;line-height:1.65}
-.cols p{flex:1 1 300px;margin:0}
+
+/* about */
+.about{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center;padding:96px 8px}
+.photo{padding:10px;border:1.5px solid var(--gold);border-radius:40px}
+.photo img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:30px}
+h2.q{margin:0 0 28px;font-size:clamp(32px,4.6vw,54px);line-height:1.08;letter-spacing:-.01em}
+h2.q em{color:var(--goldText)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;font-size:18px;line-height:1.65}
+.cols p{margin:0}
 .cols p:last-child{color:var(--muted)}
-.exp{max-width:1120px;margin:0 auto;padding:96px 32px 72px;display:flex;flex-direction:column;gap:16px}
-.exp h2{margin:0 0 16px;font-size:clamp(42px,6vw,64px);line-height:1;letter-spacing:-.01em}
-.item{border:1px solid var(--line);border-radius:28px;background:var(--card);overflow:hidden}
-.item.open{border-color:var(--accT)}
-.item button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 36px;min-height:44px;background:transparent;border:0;cursor:pointer;color:var(--text);text-align:left}
-.item .l{display:flex;align-items:baseline;gap:24px}
-.item .n{font-size:44px;line-height:.9;color:var(--accT)}
-.item .t{font-size:clamp(26px,3.4vw,40px);line-height:1.05}
-.item .s{flex:0 0 44px;height:44px;border-radius:50%;border:1px solid var(--accT);color:var(--accT);display:flex;align-items:center;justify-content:center;font-size:26px;line-height:1}
-.item .body{display:none;margin:0;padding:0 36px 32px 108px;font-size:18px;line-height:1.6;color:var(--muted);max-width:760px}
-.item.open .body{display:block}
-.cta2{max-width:1320px;margin:0 auto;background:var(--cobalt);border-radius:36px;padding:72px 48px;display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;color:#fff}
-.cta2 h2{margin:0;flex:1 1 400px;font-size:clamp(46px,6vw,72px);line-height:1;letter-spacing:-.01em}
-.cta2 h2 em{color:var(--acc)}
-.cta2 .pill{height:64px;padding:0 40px;font-size:18px}
-footer{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:center;padding:40px 8px 24px;font-size:14px;color:var(--muted)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
-@media (max-width:640px){body{padding:12px}.hero{padding:24px 24px 40px;border-radius:28px}.hero-grid{padding-top:40px}.item button{padding:22px 20px}.item .body{padding:0 20px 24px}.item .n{font-size:32px}.item .l{gap:14px}.cta2{padding:48px 24px;border-radius:28px}.about{padding:48px 20px 64px}.exp{padding:64px 20px 48px}.stat{flex:1 1 40%}.stat .big{font-size:28px;overflow-wrap:anywhere}}
+
+/* expertise */
+.exp h2{margin:0 0 24px;font-size:clamp(40px,6vw,64px);line-height:1}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.card{grid-column:span 2;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:28px;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.card.feat{grid-column:span 6;background:var(--panel);color:var(--panelText);border-color:transparent;display:flex;gap:28px;align-items:center}
+.card.wide{grid-column:span 6;display:flex;gap:28px;align-items:center}.card.wide .t{margin:0 0 8px}
+.card .n{font-size:40px;line-height:.9;color:var(--goldText)}
+.card.feat .n{font-size:64px;color:var(--hl)}
+.card .t{font-size:clamp(24px,2.6vw,32px);line-height:1.05;margin:12px 0 8px}
+.card.feat .t{margin-top:0}
+.card p{margin:0;color:var(--muted);font-size:16px}
+.card.feat p{color:var(--panelText);opacity:.85;font-size:18px}
+
+/* cta + footer */
+.cta2{margin:96px 0 0;background:var(--gold);color:var(--goldInk);border-radius:36px;padding:64px 48px;display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
+.cta2 h2{margin:0;font-size:clamp(44px,6vw,72px);line-height:1}
+.cta2 .btn{background:var(--goldInk);color:var(--gold);height:60px;padding:0 36px;font-size:17px}
+.cta2 .btn:hover{box-shadow:0 10px 24px rgba(0,0,0,.3)}
+footer{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;padding:40px 8px 32px;font-size:14px;color:var(--muted)}
+footer a:hover{color:var(--text)}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+.hero{grid-template-columns:1fr;padding:40px 28px;gap:28px}
+.orbit{max-width:420px}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:18px}
+.about{grid-template-columns:1fr;gap:32px;padding:64px 4px}
+.photo{max-width:260px}
+.cols{grid-template-columns:1fr;gap:20px;font-size:17px}
+.card,.card.wide{grid-column:span 6}.card.wide{flex-direction:column;align-items:flex-start;gap:8px}
+.card.feat{flex-direction:column;align-items:flex-start;gap:8px}
+.links{display:none}
+.cta2{padding:44px 28px;border-radius:28px}
+.hero{border-radius:28px}
+}
+@media (max-width:480px){.nav{padding-left:16px}.brand{font-size:11px;letter-spacing:.14em}.btn.sm{padding:0 14px}.node{padding:0 12px 0 10px}}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+.js .rv{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
-<section class="hero" id="top">
-<header class="bar">
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="navwrap">
+<header class="nav" id="nav">
 <a class="brand" href="#top"><b>M</b>ind <b>O</b>f <b>A</b>gents</a>
-<nav class="nav">
-<button type="button" class="circle" id="theme" aria-label="Switch theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path id="themeIcon" d=""/></svg></button>
-<a class="li" href="https://www.linkedin.com/in/rajhasekarun-g-d-2a1550a/" aria-label="LinkedIn profile"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="9" fill="#fff"/><g transform="translate(8 8) scale(1.1667)" fill="#0a66c2"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.78 2.66 4.78 6.1V21h-4v-4.98c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.92 1.3-1.92 2.63V21h-4V9.75z"/></g></svg></a>
-<a class="pill lime" style="height:44px;padding:0 26px;font-size:15px" href="https://dashboard.moagents.net">Login</a>
-</nav>
+<nav class="links" aria-label="Sections"><a href="#about" data-s="about">About</a><a href="#expertise" data-s="expertise">Expertise</a></nav>
+<div class="right">
+<button type="button" class="ic" id="theme" aria-label="Switch theme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path id="themeIcon" d=""/></svg></button>
+<a class="ic" href="https://www.linkedin.com/in/rajhasekarun-g-d-2a1550a/" aria-label="LinkedIn profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.78 2.66 4.78 6.1V21h-4v-4.98c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.92 1.3-1.92 2.63V21h-4V9.75z"/></svg></a>
+<a class="btn sm" href="https://dashboard.moagents.net">Login</a>
+</div>
 </header>
-<div class="hero-grid">
-<div class="hero-l">
+</div>
+
+<main id="main" class="wrap">
+<section class="hero" id="top">
+<div>
 <span class="chip">Sr. Architect &middot; Rajhasekarun G.D</span>
 <h1 class="serif">AI-driven systems, <em>from agent workflows</em> to the platforms they run on.</h1>
-<div class="cta"><a class="pill dark" href="https://dashboard.moagents.net">Login to the dashboard</a><a class="pill ghost" href="#about">About me</a></div>
+<div class="cta"><a class="btn" href="https://dashboard.moagents.net">Login to the dashboard</a><a class="btn ghost" href="#about">About me</a></div>
+<div class="detail" aria-live="polite">
+<div class="k" id="dk">01 &middot; Expertise</div>
+<div class="tt serif" id="dt">AI and agentic systems</div>
+<p id="dp">Agent workflows, RAG-based solutions and LangChain applications that help build and verify software.</p>
 </div>
-<div class="hero-r">
-<svg viewBox="0 0 520 520" role="img" aria-label="Diagram of an agent at the centre surrounded by rings for RAG, process automation and platform">
-<circle cx="260" cy="260" r="236" fill="none" stroke="#fff" stroke-opacity=".28"/>
-<circle cx="260" cy="260" r="160" fill="none" stroke="#fff" stroke-opacity=".4"/>
-<circle cx="260" cy="260" r="88" fill="none" stroke="#d4ff24" stroke-opacity=".9"/>
-<circle cx="260" cy="260" r="40" fill="#d4ff24"/>
-<text x="260" y="266" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#030407">Agent</text>
-<circle cx="348" cy="260" r="9" fill="#fff"/><circle cx="146" cy="170" r="9" fill="#fff"/><circle cx="420" cy="170" r="9" fill="#d4ff24"/><circle cx="190" cy="408" r="9" fill="#d4ff24"/><circle cx="330" cy="30" r="9" fill="#fff"/><circle cx="64" cy="320" r="9" fill="#fff"/>
-<g font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#fff"><text x="362" y="248">Tools</text><text x="96" y="152">RAG</text><text x="352" y="150">Process</text><text x="104" y="432">Platform</text><text x="346" y="36">Validate</text><text x="80" y="346">Cluster</text></g>
+</div>
+<div class="orbit" role="group" aria-label="Areas of expertise around an agent. Select one to read more.">
+<svg viewBox="0 0 520 520" aria-hidden="true">
+<circle class="ring1" cx="260" cy="260" r="236" fill="none" stroke="#fff" stroke-opacity=".28" stroke-dasharray="2 9"/>
+<circle class="ring2" cx="260" cy="260" r="160" fill="none" stroke="#fff" stroke-opacity=".38" stroke-dasharray="4 8"/>
+<circle cx="260" cy="260" r="96" fill="none" stroke="#ffd23f" stroke-opacity=".7"/>
 </svg>
-</div>
+<div class="core">Agent</div>
+<button type="button" class="node" data-i="0" style="left:50%;top:9%" aria-pressed="true"><i></i>AI</button>
+<button type="button" class="node" data-i="1" style="left:88%;top:37%" aria-pressed="false"><i></i>Architecture</button>
+<button type="button" class="node" data-i="2" style="left:74%;top:84%" aria-pressed="false"><i></i>Infra</button>
+<button type="button" class="node" data-i="3" style="left:26%;top:84%" aria-pressed="false"><i></i>Automation</button>
+<button type="button" class="node" data-i="4" style="left:12%;top:37%" aria-pressed="false"><i></i>Data</button>
 </div>
 </section>
 
-<section class="stats" aria-label="At a glance">
-<div class="stat"><span class="big serif">16+</span><span class="lbl">years of experience</span></div>
+<section class="stats rv" aria-label="At a glance">
+<div class="stat"><span class="big serif"><span id="count" data-to="16">16</span>+</span><span class="lbl">years of experience</span></div>
 <div class="stat"><span class="big serif">Agentic AI</span><span class="lbl">what I build now</span></div>
 <div class="stat"><span class="big serif">Architecture</span><span class="lbl">systems and platforms</span></div>
 <div class="stat"><span class="big serif">Automation</span><span class="lbl">business processes</span></div>
-<div class="stat"><span class="big serif">Infra</span><span class="lbl">run on my own cluster</span></div>
 </section>
 
-<section class="about" id="about">
-<div class="photo"><img src="assets/profile.jpg" alt="Portrait of Rajhasekarun G.D"></div>
-<div class="about-r">
+<section class="about rv" id="about">
+<div class="photo"><img src="assets/profile.jpg" alt="Portrait of Rajhasekarun G.D" width="300" height="300"></div>
+<div>
 <h2 class="q serif">I look at how a process <em>really runs</em> before deciding how to improve it.</h2>
 <div class="cols">
 <p>That habit, plus an early interest in technology, has taken me through 16+ years: from business process automation into application development, then architecture and system design, and now AI-driven engineering.</p>
@@ -125,24 +197,27 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset
 </div>
 </section>
 
-<section class="exp" id="expertise">
+<section class="exp rv" id="expertise">
 <h2 class="serif">Expertise</h2>
-<div class="item open"><button type="button" aria-expanded="true"><span class="l"><span class="n serif">01</span><span class="t serif">AI and agentic systems</span></span><span class="s" aria-hidden="true">&minus;</span></button><p class="body">Agent workflows, RAG-based solutions and LangChain applications that help build and verify software.</p></div>
-<div class="item"><button type="button" aria-expanded="false"><span class="l"><span class="n serif">02</span><span class="t serif">Architecture and system design</span></span><span class="s" aria-hidden="true">+</span></button><p class="body">Designing the structure of systems so they stay practical and scalable as they grow.</p></div>
-<div class="item"><button type="button" aria-expanded="false"><span class="l"><span class="n serif">03</span><span class="t serif">Infrastructure and platform</span></span><span class="s" aria-hidden="true">+</span></button><p class="body">Kubernetes and the platforms underneath, run myself to try ideas out first.</p></div>
-<div class="item"><button type="button" aria-expanded="false"><span class="l"><span class="n serif">04</span><span class="t serif">Business process automation</span></span><span class="s" aria-hidden="true">+</span></button><p class="body">Automation frameworks that run end to end, on a schedule, around the clock.</p></div>
-<div class="item"><button type="button" aria-expanded="false"><span class="l"><span class="n serif">05</span><span class="t serif">Data and backend validation</span></span><span class="s" aria-hidden="true">+</span></button><p class="body">Database and backend checks that confirm the numbers behind a process are right.</p></div>
+<div class="grid">
+<article class="card feat"><span class="n serif">01</span><div><h3 class="t serif" style="margin:0 0 8px;font-weight:400">AI and agentic systems</h3><p>Agent workflows, RAG-based solutions and LangChain applications that help build and verify software.</p></div></article>
+<article class="card"><span class="n serif">02</span><h3 class="t serif" style="font-weight:400">Architecture and system design</h3><p>Designing the structure of systems so they stay practical and scalable as they grow.</p></article>
+<article class="card"><span class="n serif">03</span><h3 class="t serif" style="font-weight:400">Infrastructure and platform</h3><p>Kubernetes and the platforms underneath, run myself to try ideas out first.</p></article>
+<article class="card"><span class="n serif">04</span><h3 class="t serif" style="font-weight:400">Business process automation</h3><p>Automation frameworks that run end to end, on a schedule, around the clock.</p></article>
+<article class="card wide"><span class="n serif">05</span><div><h3 class="t serif" style="font-weight:400">Data and backend validation</h3><p>Database and backend checks that confirm the numbers behind a process are right.</p></div></article>
+</div>
 </section>
 
-<section class="cta2">
-<h2 class="serif">See it <em>running.</em></h2>
-<a class="pill lime" href="https://dashboard.moagents.net">Login to the dashboard</a>
+<section class="cta2 rv">
+<h2 class="serif">See it running.</h2>
+<a class="btn" href="https://dashboard.moagents.net">Login to the dashboard</a>
 </section>
 
 <footer>
 <a href="https://www.linkedin.com/in/rajhasekarun-g-d-2a1550a/">LinkedIn</a>
 <a href="https://dashboard.moagents.net">Login</a>
 </footer>
+</main>
 
 <script>
 (function(){
@@ -151,9 +226,38 @@ var SUN="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19
 function paint(){var d=root.getAttribute("data-theme")==="dark";ic.setAttribute("d",d?SUN:MOON);btn.setAttribute("aria-label",d?"Switch to light theme":"Switch to dark theme")}
 btn.addEventListener("click",function(){var n=root.getAttribute("data-theme")==="dark"?"light":"dark";root.setAttribute("data-theme",n);try{localStorage.setItem("theme",n)}catch(e){}paint()});
 paint();
-var items=[].slice.call(document.querySelectorAll(".item"));
-function set(it,open){it.classList.toggle("open",open);it.querySelector("button").setAttribute("aria-expanded",open?"true":"false");it.querySelector(".s").innerHTML=open?"&minus;":"+"}
-items.forEach(function(it){it.querySelector("button").addEventListener("click",function(){var was=it.classList.contains("open");items.forEach(function(o){set(o,false)});if(!was)set(it,true)})});
+
+var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+var data=[
+["01 · Expertise","AI and agentic systems","Agent workflows, RAG-based solutions and LangChain applications that help build and verify software."],
+["02 · Expertise","Architecture and system design","Designing the structure of systems so they stay practical and scalable as they grow."],
+["03 · Expertise","Infrastructure and platform","Kubernetes and the platforms underneath, run myself to try ideas out first."],
+["04 · Expertise","Business process automation","Automation frameworks that run end to end, on a schedule, around the clock."],
+["05 · Expertise","Data and backend validation","Database and backend checks that confirm the numbers behind a process are right."]];
+var nodes=[].slice.call(document.querySelectorAll(".node")),dk=document.getElementById("dk"),dt=document.getElementById("dt"),dp=document.getElementById("dp");
+function pick(i){nodes.forEach(function(n,j){n.setAttribute("aria-pressed",j===i?"true":"false")});dk.textContent=data[i][0];dt.textContent=data[i][1];dp.textContent=data[i][2]}
+nodes.forEach(function(n){n.addEventListener("click",function(){pick(+n.getAttribute("data-i"))})});
+var cur=0,timer=null;
+function auto(){if(reduce)return;timer=setInterval(function(){cur=(cur+1)%nodes.length;pick(cur)},4500)}
+function stop(){if(timer){clearInterval(timer);timer=null}}
+nodes.forEach(function(n){n.addEventListener("click",stop);n.addEventListener("focus",stop)});
+document.querySelector(".orbit").addEventListener("mouseenter",stop);
+auto();
+
+var nav=document.getElementById("nav");
+function sc(){nav.classList.toggle("small",window.scrollY>40)}
+window.addEventListener("scroll",sc,{passive:true});sc();
+
+if("IntersectionObserver" in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
+[].slice.call(document.querySelectorAll(".rv")).forEach(function(el){io.observe(el)});
+var links=[].slice.call(document.querySelectorAll(".links a"));
+var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle("on",l.getAttribute("data-s")===e.target.id)})}})},{rootMargin:"-45% 0px -50% 0px"});
+["about","expertise"].forEach(function(id){so.observe(document.getElementById(id))});
+var c=document.getElementById("count");
+if(!reduce){var co=new IntersectionObserver(function(es){if(es[0].isIntersecting){co.disconnect();var t0=null,to=+c.getAttribute("data-to");(function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/900,1);c.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(performance.now())}},{threshold:.6});co.observe(c)}
+}else{[].slice.call(document.querySelectorAll(".rv")).forEach(function(el){el.classList.add("in")})}
 })();
 </script>
 </body>
